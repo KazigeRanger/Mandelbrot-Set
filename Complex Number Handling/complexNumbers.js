@@ -4,6 +4,7 @@ class complexNumber {
         this._imaginaryPart = imaginaryPart
     }
 
+    // TODO: make the add method work if "numberToAdd" is negative.
     add(numberToAdd) {
         if (numberToAdd._imaginaryPart !== undefined) {
             return new complexNumber(this._realPart+numberToAdd._realPart, this._imaginaryPart+numberToAdd._imaginaryPart);
@@ -14,9 +15,21 @@ class complexNumber {
 
     subtract(numberToSubtract) {
         if (numberToSubtract._imaginaryPart !== undefined) {
-            return new complexNumber(this._realPart-numberToSubtract._realPart, this._imaginaryPart-numberToSubtract._imaginaryPart);
+            if (Math.sign(numberToSubtract._realPart) === 1 && Math.sign(numberToSubtract._imaginaryPart) === 1) {
+                return new complexNumber(this._realPart-numberToSubtract._realPart, this._imaginaryPart-numberToSubtract._imaginaryPart);
+            } else if (Math.sign(numberToSubtract._realPart) === 1 && Math.sign(numberToSubtract._imaginaryPart) === 1) {
+                return new complexNumber(this._realPart+numberToSubtract._realPart, this._imaginaryPart+numberToSubtract._imaginaryPart);
+            } else if (Math.sign(numberToSubtract._realPart) === 1) {
+                return new complexNumber(this._realPart-numberToSubtract._realPart, this._imaginaryPart+numberToSubtract._imaginaryPart);
+            } else if (Math.sign(numberToSubtract._imaginaryPart) === 1) {
+                return new complexNumber(this._realPart+numberToSubtract._realPart, this._imaginaryPart-numberToSubtract._imaginaryPart);
+            }
         } else if (numberToSubtract._imaginaryPart === undefined) {
-            return new complexNumber(this._realPart-numberToSubtract, this._imaginaryPart);
+            if (Math.sign(numberToSubtract) === 1) {
+                return new complexNumber(this._realPart-numberToSubtract, this._imaginaryPart);
+            } else if (Math.sign(numberToSubtract) === -1) {
+                return new complexNumber(this._realPart+numberToSubtract, this._imaginaryPart);
+            }
         }
     }
 

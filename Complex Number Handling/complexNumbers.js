@@ -7,9 +7,21 @@ class complexNumber {
     // TODO: make the add method work if "numberToAdd" is negative.
     add(numberToAdd) {
         if (numberToAdd._imaginaryPart !== undefined) {
-            return new complexNumber(this._realPart+numberToAdd._realPart, this._imaginaryPart+numberToAdd._imaginaryPart);
+            if (Math.sign(numberToAdd._realPart) === 1 && Math.sign(numberToAdd._imaginaryPart) === 1) {
+                return new complexNumber(this._realPart+numberToAdd._realPart, this._imaginaryPart+numberToAdd._imaginaryPart);
+            } else if (Math.sign(numberToAdd._realPart) === -1 && Math.sign(numberToAdd._imaginaryPart) === -1) {
+                return new complexNumber(this._realPart-numberToAdd._realPart, this._imaginaryPart-numberToAdd._imaginaryPart);
+            } else if (Math.sign(numberToAdd._realPart) === 1) {
+                return new complexNumber(this._realPart+numberToAdd._realPart, this._imaginaryPart-numberToAdd._imaginaryPart);
+            } else if (Math.sign(numberToAdd._imaginaryPart) === 1) {
+                return new complexNumber(this._realPart-numberToAdd._realPart, this._imaginaryPart+numberToAdd._imaginaryPart);
+            }
         } else if (numberToAdd._imaginaryPart === undefined) {
-            return new complexNumber(this._realPart+numberToAdd, this._imaginaryPart);
+            if (Math.sign(numberToAdd) === 1) {
+                return new complexNumber(this._realPart+numberToAdd, this._imaginaryPart);
+            } else if (Math.sign(numberToAdd) === -1) {
+                return new complexNumber(this._realPart-numberToAdd, this._imaginaryPart);
+            }
         }
     }
 
@@ -17,7 +29,7 @@ class complexNumber {
         if (numberToSubtract._imaginaryPart !== undefined) {
             if (Math.sign(numberToSubtract._realPart) === 1 && Math.sign(numberToSubtract._imaginaryPart) === 1) {
                 return new complexNumber(this._realPart-numberToSubtract._realPart, this._imaginaryPart-numberToSubtract._imaginaryPart);
-            } else if (Math.sign(numberToSubtract._realPart) === 1 && Math.sign(numberToSubtract._imaginaryPart) === 1) {
+            } else if (Math.sign(numberToSubtract._realPart) === -1 && Math.sign(numberToSubtract._imaginaryPart) === -1) {
                 return new complexNumber(this._realPart+numberToSubtract._realPart, this._imaginaryPart+numberToSubtract._imaginaryPart);
             } else if (Math.sign(numberToSubtract._realPart) === 1) {
                 return new complexNumber(this._realPart-numberToSubtract._realPart, this._imaginaryPart+numberToSubtract._imaginaryPart);

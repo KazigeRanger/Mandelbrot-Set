@@ -17,6 +17,10 @@ function generateMandelbrotPoints(maxNumberOfIterations, resolution) {
                 iterationCount += 1
                 console.log(`ITERATION ${iterationCount}: z = ${z._realPart} + ${z._imaginaryPart}i     c = ${c._realPart} + ${c._imaginaryPart}i`);
                 z1 = z.multiplyComplex(z);
+
+                // THIS ADD STATEMENT OUTPUTS THE WRONG ANSWER
+                // THE ADD METHOD NEEDS TO BE UPDATED WITHIN THE complexNumber CLASS
+                // THE complexNumber CLASS IS IN THE complexNumbers.js FILE
                 z = z1.add(c);
             }
         }
